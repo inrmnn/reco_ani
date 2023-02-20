@@ -1,0 +1,52 @@
+
+<div class="border border-primary rounded">
+    <h3 class="bg-primary text-white text-center py-3">ユーザー情報</h3>
+    <div class="row">
+        <div class="col-10 offset-1">
+            <h3 class="mt-2 text-border text-center mb-3">ニックネーム</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-1">
+          <%= link_to user_path(user) do %>    
+            <h4 class="text-center mb-3 text-dark text-decoration-none"><%= user.name %></h4>
+          <% end %>   
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-1">
+          <h3 class="mt-3 text-border text-center mb-3">好きなアニメ</h3>
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-10 offset-1">
+          <h5 class="text-center mb-3 text-dark">
+              <div class="mb-1"><%= user.anime_first %></div></br>
+              <div class="mb-1"><%= user.anime_second %></div></br>
+              <div class="mb-1"><%= user.anime_third %></div>
+          </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-1">
+          <h3 class="mt-3 text-border text-center mb-3">好きなジャンル</h3>
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-10 offset-1">
+          <h5 class="text-center mb-3 text-dark">
+              <div class="mb-1"><%= user.genre_first %></div></br>
+              <div class="mb-1"><%= user.genre_second %></div></br>
+             <div class="mb-1"><%= user.genre_third %></div>
+        </div>
+     </div>   
+   <% if user == current_user %>
+        <div class="row">
+            <div class="col-10 offset-1">
+                <div class="text-center mb-3">
+                  <%= link_to "編集", edit_user_path(current_user), class: 'btn btn-success px-3 col-10'%>
+                </div>  
+            </div>
+        </div>
+   <% end %>
+</div>

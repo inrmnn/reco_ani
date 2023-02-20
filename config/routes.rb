@@ -19,9 +19,12 @@ Rails.application.routes.draw do
   end
   
   scope module: :public do
-    resources :posts, only: [:new, :create, :index, :show]
+    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+       resources :comments, only: [:create]
+     end 
+    get 'posts/comment/:id' => 'posts#comment' , as: 'comment'
     
-    resources :users, only: [:show]
+    resources :users, only: [:show, :edit, :update]
     
     get 'homes/about'
     
