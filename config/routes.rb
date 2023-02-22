@@ -9,13 +9,16 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    resources :users, only: [:index, :show]
+    resources :users, only: [:index, :show, :destroy]
    
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
    
-    resources :posts, only: [:index, :show]
+    resources :posts, only: [:show, :destroy]
+    root to: 'posts#index'
+    get 'posts/comments/:id' => 'posts#comments' , as: 'comments'
+    delete 'posts/destroy_comment/:id' => 'posts#destroy_comment' , as: 'destroy_comment'
   
-    root to: 'homes#top'
+   
   end
   
   scope module: :public do

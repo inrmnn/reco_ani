@@ -1,6 +1,16 @@
-<div class="container-fulid">
+<div class="container">
     <div class="row">
-        <div class="col-md-2 offset-md-1 mt-5">
+        <nav class="navbar  mr-auto mt-3">
+          <div class="container-fluid">
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-success" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mt-5">
             <div class="border border-primary rounded">
                 
                 <h3 class="bg-primary text-white text-center py-3 mb-3">ジャンル検索</h3>
@@ -20,10 +30,7 @@
                   </table>
             </div>    
         </div>
-        <div class="col-md-3 mt-5 ">
-           <%= render 'public/users/user', user: @user %>
-        </div>
-        <div class="col-md-5 mt-5">
+        <div class="col-md-7 offset-md-1 mt-5">
             <div class="border border-primary rounded">
                 <h3 class="bg-primary text-white text-center py-3 mb-0">
                     投稿一覧
@@ -64,6 +71,7 @@
                                         <% end %>
                                 </tbody>
                         </table>
+                         <%= paginate(@posts) %>
                     </div>
                 </div>
             </div>    

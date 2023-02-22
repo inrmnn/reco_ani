@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @post = Post.new
     @genres = Genre.all
@@ -12,14 +14,14 @@ class Public::PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page])
     @user = current_user
     @genres = Genre.all
        if params[:genre_id]
          @genre = Genre.find(params[:genre_id])
-         @posts = @genre.posts.all
+         @posts = @genre.posts.page(params[:page])
        else
-         @posts = Post.all
+         @posts = Post.page(params[:page])
        end 
   end
 
@@ -50,6 +52,7 @@ class Public::PostsController < ApplicationController
   
   def comment
      @post = Post.find(params[:id])
+     @comment = @post.comments.page(params[:page])
   end
   private
   

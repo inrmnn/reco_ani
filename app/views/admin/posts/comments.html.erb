@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 offset-1 mt-2">
-           <%= link_to "投稿詳細へ戻る", post_path(@post), class: "btn btn-primary p-3"  %>
+           <%= link_to "投稿詳細へ戻る", admin_post_path(@post), class: "btn btn-primary p-3"  %>
         </div>
     </div>
     <div class="row">
@@ -18,12 +18,13 @@
                                 <thead class="table-secondary">
                                        <tr>
                                            <th style="width: 15%">投稿者</th>
-                                           <th style="width: 70%">コメント</th>
+                                           <th style="width: 60%">コメント</th>
                                            <th style="width: 15%">投稿日時</th>
+                                           <th style="width: 10%"></th>
                                        </tr>
                                 </thead>
                                 <tbody>
-                                       <% @comment.each do |comment| %>
+                                       <% @comments.each do |comment| %>
                                                 <tr>
                                                     <td>
                                                        <%= comment.user.name %>
@@ -34,11 +35,14 @@
                                                     <td>
                                                        <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
                                                     </td>
+                                                    <td>
+                                                        <%= link_to "削除", admin_destroy_comment_path, method: :delete, data: {confirm: "本当に削除しますか？"}, class:"btn btn-danger ml-1" %>
+                                                    </td>
                                                 </tr>
                                         <% end %>
                                 </tbody>
                         </table>
-                        <%= paginate @comment %>
+                         <%= paginate @comments %>
                     </div>
                 </div>
             </div>    
