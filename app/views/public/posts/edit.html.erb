@@ -22,7 +22,7 @@
          <div class="row mb-3 justify-content-center">
              <div class="col-8 mb-3">
                 <h4>ジャンル</h4>
-                    <%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: "選択してください"}, class: "form-control") %>
+                    <%= f.collection_select(:genre_id, Genre.all, :id, :name, {prompt: "選択してください"}, class: "form-control") %>
              </div>
          </div>
          <div class="row justify-content-center">

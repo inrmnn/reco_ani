@@ -1,20 +1,24 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
-  
   def new
     @post = Post.new
-    @genres = Genre.all
   end
   
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save!
-    redirect_to posts_path
+    if  @post.save
+      flash[:notice] = "新しい投稿に成功しました。"
+      redirect_to posts_path
+    else
+      flash[:notice] = "投稿に失敗しました。"
+      render "new"
+    end 
   end
   
   def index
-    @posts = Post.page(params[:page])
+    
+    @posts = Post.where("title LIKE ?", "%#{params[:title]}%")
     @user = current_user
     @genres = Genre.all
        if params[:genre_id]
@@ -40,23 +44,32 @@ class Public::PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
-    @genres = Genre.all
   end 
   
   def update
     @post = Post.find(params[:id])
     @post.user_id = current_user.id
-    @post.update(post_params)
-    redirect_to user_path(current_user)
+     if  @post.update(post_params)
+       flash[:notice] = "投稿の更新に成功しました。"
+       redirect_to user_path(current_user)
+     else
+       flash[:notice] = "投稿の更新に失敗しました。"
+       render 'edit'
+     end
   end
   
   def comment
      @post = Post.find(params[:id])
      @comment = @post.comments.page(params[:page])
   end
-  private
   
+ def search
+     @posts = Post.where("title LIKE ?", "%#{params[:title]}%").page(params[:page])
+ end
+  
+  private
+ 
   def post_params
-     params.require(:post).permit(:title, :body, :genre_id, :comm)
+     params.require(:post).permit(:title, :body, :genre_id, :comment)
   end
 end

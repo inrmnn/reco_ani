@@ -1,4 +1,4 @@
-class Public::UsersController < ApplicationControlle
+class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   
   def show
@@ -12,8 +12,13 @@ class Public::UsersController < ApplicationControlle
   
   def update
     @user = current_user
-    @user.update(user_params)
-    redirect_to user_path(current_user)
+    if @user.update(user_params)
+       flash[:notice] = "ユーザーの情報を更新しました。"
+       redirect_to  user_path(current_user)
+    else
+       flash[:notice] = "更新に失敗しました"
+       render "edit"
+    end
   end 
   
   private

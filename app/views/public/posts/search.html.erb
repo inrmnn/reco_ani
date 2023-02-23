@@ -1,46 +1,15 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-3 mt-5">
-            <h3 class="bg-primary text-white text-center p-3 rounded">タイトル検索</h3>
-        
-            <nav class="navbar mr-auto mb-5">
-                <table>
-                  <%= form_with  url: search_posts_path, method: :get do |f| %>
-                   <td>
-                    <%= f.text_field :title, class: "form-control me-2", placeholder: "タイトル名" %>
-                   </td>
-                   <td>
-                    <%= f.submit '検索', class: "btn btn-success" %>
-                   </td>
-                  <% end %>
-                </table>
-            </nav>
-            <div class="border border-primary rounded">
-                
-                <h3 class="bg-primary text-white text-center py-3  mb-3">ジャンル検索</h3>
-                 <table class="table table-borderless genre_table">
-                       <tbody>
-                          <% @genres.each do |genre| %>
-                          <tr>
-                              <th class=" text-center h4">
-                                <%= link_to posts_path(genre_id: genre.id), class:"text-dark text-border text-decoration-none" do %>
-                                
-                                 <%= genre.name %>
-                                <% end %>
-                              </th>
-                           </tr> 
-                          <% end %>
-                    </tbody>
-                  </table>
-            </div>    
+        <div class="col-md-8 offset-2 mt-2">
+           <%= link_to "一覧画面へ戻る", posts_path, class: "btn btn-primary p-3"  %>
         </div>
-        <div class="col-md-7 offset-md-1 mt-5">
+    </div>
+    <div class="row">
+        <div class="col-md-8 offset-md-2 mt-3">
             <div class="border border-primary rounded">
                 <h3 class="bg-primary text-white text-center py-3 mb-0">
-                    投稿一覧
+                    検索結果
                 </h3>
-            
-    
                 <div class="row">
                     <div class="col-12">
                         <table class="table table-borderless">
@@ -80,5 +49,5 @@
                 </div>
             </div>    
         </div>   
-    </div>    
+    </div>
 </div>

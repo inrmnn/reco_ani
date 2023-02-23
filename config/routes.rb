@@ -13,23 +13,26 @@ Rails.application.routes.draw do
    
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
    
-    resources :posts, only: [:show, :destroy]
+    resources :posts, only: [:show, :destroy] do 
+      resources :comment, only: [:destroy]
+    end
     root to: 'posts#index'
     get 'posts/comments/:id' => 'posts#comments' , as: 'comments'
-    delete 'posts/destroy_comment/:id' => 'posts#destroy_comment' , as: 'destroy_comment'
   
    
   end
   
   scope module: :public do
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+       collection do
+        get 'search'
+       end
        resources :comments, only: [:create]
      end 
     get 'posts/comment/:id' => 'posts#comment' , as: 'comment'
     
     resources :users, only: [:show, :edit, :update]
     
-    get 'homes/about'
     
     root to: 'homes#top'
   end

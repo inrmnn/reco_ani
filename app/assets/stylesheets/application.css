@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+ 
+html,body{
+margin:0;
+padding:0;
+}
 
 .title-top{
     font-family: 'Oswald', sans-serif;
@@ -43,3 +48,9 @@
 .pagination {
   justify-content: center;
 }
+
+ .footer-space {
+     height: 100px;
+ }
+ 
+ 
