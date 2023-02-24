@@ -11,7 +11,7 @@
                    コメント一覧
                 </h3>
             
-    
+               <!--コメントは基本的に消せないようにしたいのでユーザー側の削除機能は実装していません-->
                 <div class="row">
                     <div class="col-12">
                         <table class="table">
@@ -23,6 +23,17 @@
                                        </tr>
                                 </thead>
                                 <tbody>
+                                     <!--コメントがない場合表示-->
+                                     <% unless @comment.present? %>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                             <h3 class="text-center">コメントはありません。</h3>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    <% else %>
+                                    <!--投稿に対してのコメントを表示-->
                                        <% @comment.each do |comment| %>
                                                 <tr>
                                                     <td>
@@ -36,8 +47,10 @@
                                                     </td>
                                                 </tr>
                                         <% end %>
+                                    <% end %>    
                                 </tbody>
                         </table>
+                         <!--１ページ１５個まで-->
                         <%= paginate @comment %>
                     </div>
                 </div>

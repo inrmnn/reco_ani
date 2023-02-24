@@ -1,8 +1,13 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-10 offset-md-1 mt-5">
+         <div class="col-md-3 mt-5 ">
+            <!--ユーザー情報の表示-->
+           <%= render 'public/users/user', user: @user %>
+        </div>
+        <div class="col-md-7 offset-md-1 mt-5">
             <div class="border border-primary rounded">
                 <h3 class="bg-primary text-white text-center py-3 mb-0">
+                    <!--投稿詳細のユーザー名を表示しています-->
                     <%= @user.name %>さんの投稿一覧
                 </h3>
             
@@ -18,9 +23,21 @@
                                        </tr>
                                 </thead>
                                 <tbody>
+                                    <!--投稿がない場合に表示-->
+                                    <% unless @posts.present? %>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                         <h3 class="text-center">投稿はありません。</h3>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <% else %>
+                                    <!--ユーザーの投稿を表示-->
                                         <% @posts.each do |post| %>
                                                 <tr>
                                                     <td>
+                                                        <!--投稿詳細ページに遷移-->
                                                         <%= link_to admin_post_path(post) do %>
                                                           <%= post.title %>
                                                         <% end %>
@@ -33,8 +50,10 @@
                                                     </td>
                                                 </tr>
                                         <% end %>
+                                    <% end %>
                                 </tbody>
                         </table>
+                          <!--１ページ１５個まで-->
                         <%= paginate @posts %>
                     </div>
                 </div>

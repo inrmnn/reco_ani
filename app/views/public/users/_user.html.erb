@@ -6,6 +6,7 @@
             <h3 class="mt-2 text-border text-center mb-3">ニックネーム</h3>
         </div>
     </div>
+    <!--ユーザー情報の表示-->
     <div class="row">
         <div class="col-10 offset-1">
           <%= link_to user_path(user) do %>    
@@ -21,6 +22,7 @@
      <div class="row">
         <div class="col-10 offset-1">
           <h5 class="text-center mb-3 text-dark">
+              <!--好きなアニメを３つまで表示-->
               <div class="mb-1"><%= user.anime_first %></div></br>
               <div class="mb-1"><%= user.anime_second %></div></br>
               <div class="mb-1"><%= user.anime_third %></div>
@@ -35,11 +37,13 @@
      <div class="row">
         <div class="col-10 offset-1">
           <h5 class="text-center mb-3 text-dark">
+              <!--好きなアニメジャンルを３つまで表示-->
               <div class="mb-1"><%= user.genre_first %></div></br>
               <div class="mb-1"><%= user.genre_second %></div></br>
              <div class="mb-1"><%= user.genre_third %></div>
         </div>
      </div>   
+     <!--ログインユーザーの場合編集ボタンを表示-->
    <% if user == current_user %>
         <div class="row">
             <div class="col-10 offset-1">
@@ -49,4 +53,13 @@
             </div>
         </div>
    <% end %>
+   <% if admin_signed_in? %>
+   <div class="row">
+            <div class="col-10 offset-1">
+                <div class="text-center mb-3">
+                  <%= link_to "ユーザー削除", admin_user_path, method: :delete, data: {confirm: "本当に削除しますか？"}, class:"btn btn-danger px-3 col-10" %>
+                </div>  
+            </div>
+        </div>
+    <% end %>    
 </div>

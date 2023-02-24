@@ -1,4 +1,5 @@
 <div class="container">
+    <!--ログインユーザーの場合のみ表示-->
     <% if @user == current_user %>
     <div class="row">
         <div class="col-10 offset-1">
@@ -8,6 +9,7 @@
     <% end %>
     <div class="row">
         <div class="col-md-3 mt-5 ">
+            <!--ユーザー情報の表示-->
            <%= render 'public/users/user', user: @user %>
         </div>
         <div class="col-md-7 offset-md-1 mt-5">
@@ -28,6 +30,16 @@
                                        </tr>
                                 </thead>
                                 <tbody>
+                                    <!--投稿がない場合に表示-->
+                                    <% unless @posts.present? %>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                             <h3 class="text-center">投稿はありません。</h3>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    <% else %>
                                         <% @posts.each do |post| %>
                                                 <tr>
                                                     <td>
@@ -43,6 +55,7 @@
                                                     </td>
                                                 </tr>
                                         <% end %>
+                                     <% end %>
                                 </tbody>
                         </table>
                         <%= paginate @posts %>

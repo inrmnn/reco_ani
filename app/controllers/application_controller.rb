@@ -4,8 +4,10 @@ class ApplicationController < ActionController::Base
      
       def after_sign_in_path_for(resource)
           case resource
+          # 管理者　管理者投稿一覧画面
           when Admin
               admin_root_path
+          # ユーザー　投稿一覧画面
           when User
               posts_path
           end

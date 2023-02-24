@@ -1,7 +1,8 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:edit]
   
   def show
+    # ユーザーページを表示
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page])
   end
@@ -13,9 +14,11 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
+       # 更新成功時、マイページへ
        flash[:notice] = "ユーザーの情報を更新しました。"
        redirect_to  user_path(current_user)
     else
+      # 更新失敗時
        flash[:notice] = "更新に失敗しました"
        render "edit"
     end

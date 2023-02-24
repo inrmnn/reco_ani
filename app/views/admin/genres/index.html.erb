@@ -4,6 +4,7 @@
     　　　 <h2 class="mb-3">ジャンル一覧・追加</h2>
         </div> 
     </div>
+    <!--アニメのジャンル内容を追加する-->
     <%= form_with model: @genre, url: admin_genres_path do |f| %>
        <div class="row">
              <div class="col-11 mb-3">
@@ -21,7 +22,7 @@
       </div>
        
      <% end %>
-    
+    <!--必要のないジャンルは編集で消す-->
     <div class="row">
       <div class="col-11 mt-3">
           <div class="row">

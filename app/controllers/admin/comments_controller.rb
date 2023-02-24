@@ -1,10 +1,12 @@
 class Admin::CommentsController < ApplicationController
     
  def destroy
-     @post = Post.find(params[:post_id])
-     @comment = @post.comment.find(params[:id])
-     @comment.destroy
-     redirect_to admin_post_path(@post)
+    # コメントID、投稿IDを取得
+     Comment.find_by(id: params[:id],post_id: params[:post_id]).destroy
+      @post = Post.find(params[:post_id])
+      # コメント一覧へ戻るへ
+     redirect_to admin_comments_path(@post)
+     
  end
  
   private

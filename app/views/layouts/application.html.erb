@@ -16,11 +16,13 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light border border-dark bg-primary">
         <div class="container">
-          
+          　　<!--管理者ログイン：遷移先　管理者投稿一覧画面-->
             <% if admin_signed_in? %>
               <%= link_to "recoani!!", admin_root_path, class:"header-title h1 title-top text-white text-decoration-none"%>
+              <!--ユーザーログイン：遷移先　投稿一覧画面-->
             <% elsif user_signed_in? %>
               <%= link_to "recoani!!", posts_path, class:"header-title h1 title-top text-white text-decoration-none"%>
+              <!--ログインしていない状態：遷移先　ホーム画面-->
             <% else %>
               <%= link_to "recoani!!", root_path, class:"header-title h1 title-top text-white text-decoration-none"%>
               
@@ -30,9 +32,10 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          
+          <!--ヘッダーのボタン-->
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
+                <!--ユーザーログイン時表示ボタン-->
              <% if user_signed_in? %>
             　　<li class="nav-item">
                   <%= link_to "新規投稿", new_post_path, class: 'btn btn-light mx-3 my-1'%>
@@ -46,6 +49,7 @@
                 <li class="nav-item">
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'btn btn-light mx-3 my-1'%>
                 </li>
+                <!--管理者ログイン時表示ボタン-->
              <% elsif admin_signed_in? %>
                <li class="nav-item">
                   <%= link_to "ユーザー一覧", admin_users_path, class: 'btn btn-light mx-3 my-1'%>
@@ -60,8 +64,12 @@
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-light mx-3 my-1'%>
                 </li>
              <% else %>
-             　　<li class="nav-item">
+             <!--ログインしていない状態表示ボタン-->
+             　 <li class="nav-item">
                   <%= link_to "ホーム", root_path, class: 'btn btn-light mx-3 my-1'%>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "投稿一覧", posts_path, class: 'btn btn-light mx-3 my-1'%>
                 </li>
                  <li class="nav-item">
                    <%= link_to "新規登録", new_user_registration_path,class: 'btn btn-light mx-3 my-1'%>
@@ -88,9 +96,7 @@
         </div>
     </main>
     <footer>
-     
             <div class="footer-space"></div>
-       
   </footer>
   </body>
 </html>
