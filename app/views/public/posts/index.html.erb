@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md- mt-5">
+        <div class="col-lg-3 mt-5">
             <h3 class="bg-primary text-white text-center p-3 rounded">タイトル検索</h3>
           <!--whereメソッドを使い検索機能を実装しています-->
             <nav class="navbar mr-auto mb-5">
@@ -15,10 +15,10 @@
                   <% end %>
                  
             </nav>
-            <div class="border border-primary rounded">
+            <div class="border border-primary rounded  bg-white">
               <!--ジャンル検索は少しわかりづらいので工夫して修正したい-->
                 <h3 class="bg-primary text-white text-center py-3  mb-3">ジャンル検索</h3>
-                 <table class="table table-borderless genre_table">
+                 <table class="table table-borderless genre_table bg-white">
                        <tbody>
                           <% @genres.each do |genre| %>
                           <tr>
@@ -35,8 +35,8 @@
                   </table>
             </div>    
         </div>
-        <div class="col-md-7 offset-md-1 mt-5">
-            <div class="border border-primary rounded">
+        <div class="col-lg-7 offset-lg-1 mt-5">
+            <div class="border border-primary rounded bg-white">
                 <h3 class="bg-primary text-white text-center py-3 mb-0">
                     投稿一覧
                 </h3>

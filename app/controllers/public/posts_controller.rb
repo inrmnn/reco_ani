@@ -14,7 +14,7 @@ class Public::PostsController < ApplicationController
       redirect_to posts_path
     else
       # 投稿失敗時
-      flash[:notice] = "投稿に失敗しました。"
+      flash[:alert] = "投稿に失敗しました。"
       render "new"
     end 
   end
@@ -63,13 +63,14 @@ class Public::PostsController < ApplicationController
        redirect_to user_path(current_user)
      else
       # 更新失敗時
-       flash[:notice] = "投稿の更新に失敗しました。"
+       flash[:alert] = "投稿の更新に失敗しました。"
        render 'edit'
      end
   end
   
   def comment
      @post = Post.find(params[:id])
+     @user = @post.user
     # 投稿に紐づいたコメントを表示
      @comment = @post.comments.page(params[:page])
   end

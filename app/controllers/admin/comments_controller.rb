@@ -5,6 +5,7 @@ class Admin::CommentsController < ApplicationController
      Comment.find_by(id: params[:id],post_id: params[:post_id]).destroy
       @post = Post.find(params[:post_id])
       # コメント一覧へ戻るへ
+     flash[:notice] = "コメントを削除しました。"
      redirect_to admin_comments_path(@post)
      
  end

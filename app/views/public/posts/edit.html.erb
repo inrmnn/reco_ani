@@ -1,41 +1,40 @@
 <div class="container">
     <div class="row">
-        <div class="col-8 ml-5">
-            <h2 class="mb-3">
-                投稿編集
-            </h2>
+    　  <div class="col-lg-10 offset-lg-1 mt-5">
+            <div class="border border-primary rounded bg-white">
+                 <h3 class="bg-primary text-white text-center py-3 mb-3">投稿編集</h3>
+                    <!--タイトル、本文、ジャンルのいずれかが欠けていると保存されないようになっています-->
+                    <%= form_with model: @post do |f| %>
+                         <div class="row mb-3  justify-content-center">
+                            <div class="col-8 mb-3">
+                                <!--タイトルは検索できるようにしてあります-->
+                                <h4 class="mt-3">タイトル</h4>
+                                <%= f.text_field :title, class: "form-control" %>
+                             </div>
+                         </div>      
+                         
+                         <div class="row mb-3 justify-content-center">
+                             <div class="col-8 mb-3">
+                                <h4>本文</h4>
+                                <%= f.text_area :body, class: "form-control",rows: 8 %>
+                             </div>
+                         </div> 
+                         
+                         <div class="row mb-3 justify-content-center">
+                             <div class="col-8 mb-3">
+                                <h4>ジャンル</h4>
+                                    <%= f.collection_select(:genre_id, Genre.all, :id, :name, {prompt: "選択してください"}, class: "form-control") %>
+                             </div>
+                         </div>
+                         
+                         <div class="row justify-content-center">
+                             <div class="col-4 mb-3">
+                                    
+                                <%= f.submit "投稿",class: "btn btn-success col-10" %>
+                             </div>
+                         </div>
+                    <% end %>
+            </div>        
         </div>
-    </div>
-    <!--タイトル、本文、ジャンルのいずれかが欠けていると保存されないようになっています-->
-    <%= form_with model: @post do |f| %>
-         <div class="row mb-3  justify-content-center">
-            <div class="col-8 mb-3">
-                <!--タイトルは検索できるようにしてあります-->
-                <h4 class="mt-3">タイトル</h4>
-                <%= f.text_field :title, class: "form-control" %>
-             </div>
-         </div>      
-         
-         <div class="row mb-3 justify-content-center">
-             <div class="col-8 mb-3">
-                <h4>本文</h4>
-                <%= f.text_area :body, class: "form-control",rows: 8 %>
-             </div>
-         </div> 
-         
-         <div class="row mb-3 justify-content-center">
-             <div class="col-8 mb-3">
-                <h4>ジャンル</h4>
-                    <%= f.collection_select(:genre_id, Genre.all, :id, :name, {prompt: "選択してください"}, class: "form-control") %>
-             </div>
-         </div>
-         
-         <div class="row justify-content-center">
-             <div class="col-4 mb-3">
-                    
-                <%= f.submit "投稿",class: "btn btn-success col-10" %>
-             </div>
-         </div>
-    <% end %>
     </div>
 </div>

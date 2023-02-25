@@ -19,7 +19,7 @@ class Public::UsersController < ApplicationController
        redirect_to  user_path(current_user)
     else
       # 更新失敗時
-       flash[:notice] = "更新に失敗しました"
+       flash[:alert] = "更新に失敗しました"
        render "edit"
     end
   end 

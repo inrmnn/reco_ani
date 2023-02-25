@@ -12,11 +12,11 @@
     
   </head>
 
-   <body>
+   <body class="background wrapper">
     <header>
       <nav class="navbar navbar-expand-lg navbar-light border border-dark bg-primary">
         <div class="container">
-          　　<!--管理者ログイン：遷移先　管理者投稿一覧画面-->
+              <!--管理者ログイン：遷移先　管理者投稿一覧画面-->
             <% if admin_signed_in? %>
               <%= link_to "recoani!!", admin_root_path, class:"header-title h1 title-top text-white text-decoration-none"%>
               <!--ユーザーログイン：遷移先　投稿一覧画面-->
@@ -37,7 +37,7 @@
             <ul class="navbar-nav ml-auto">
                 <!--ユーザーログイン時表示ボタン-->
              <% if user_signed_in? %>
-            　　<li class="nav-item">
+                <li class="nav-item">
                   <%= link_to "新規投稿", new_post_path, class: 'btn btn-light mx-3 my-1'%>
                 </li>
                 <li class="nav-item">
@@ -65,7 +65,7 @@
                 </li>
              <% else %>
              <!--ログインしていない状態表示ボタン-->
-             　 <li class="nav-item">
+                <li class="nav-item">
                   <%= link_to "ホーム", root_path, class: 'btn btn-light mx-3 my-1'%>
                 </li>
                 <li class="nav-item">
@@ -86,17 +86,25 @@
         </div>
       </nav>
     </header>
-    <main>
-         <div class="main-body container-fluid">
-          <p class="flash" id="notice"><%= flash[:notice] %></p>
-          <p class="flash" id="success"><%= flash[:success] %></p>
-          <p class="flash" id="alert"><%= flash[:alert] %></p>
-          <p class="flash" id="error"><%= flash[:error] %></p>
-          <%= yield %>
-        </div>
+    
+    <main class="mb-5 main-height">
+      <div class="container-fluid px-0">
+         <% if flash[:notice] %>
+                 <div class="alert p-2 bg-success text-white"><%= flash[:notice] %>
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                 </div>
+         <% end %>
+         <% if flash[:alert] %>
+                 <div class="alert p-2 bg-danger text-white"><%= flash[:alert] %>
+                   <button type="button" class="close" data-dismiss="alert">&times;</button>
+                 </div>
+                 
+         <% end %>
+         <%= yield %>
+      </div>
     </main>
     <footer>
-            <div class="footer-space"></div>
+          <p> &copy; 2023 recoani</p>
   </footer>
   </body>
 </html>
