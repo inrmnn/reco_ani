@@ -46,6 +46,7 @@ class Public::PostsController < ApplicationController
      # 投稿削除
     @post.destroy
     # マイページに遷移
+    flash[:notice] = "投稿を削除しました。"
     redirect_to user_path(current_user)
   end 
   
