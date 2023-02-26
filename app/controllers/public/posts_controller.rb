@@ -60,7 +60,7 @@ class Public::PostsController < ApplicationController
      if  @post.update(post_params)
       # 更新成功時、マイページへ
        flash[:notice] = "投稿の更新に成功しました。"
-       redirect_to user_path(current_user)
+       redirect_to post_path(@post)
      else
       # 更新失敗時
        flash[:alert] = "投稿の更新に失敗しました。"
