@@ -24,8 +24,19 @@ class Public::UsersController < ApplicationController
     end
   end 
   
+  def favorites
+    @user = User.find(params[:id])
+    # ユーザーidが、このユーザーの、いいねのレコードを全て取得します。
+    @favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    # 配列だとkaminariが動かないので以下のコードを記述します
+    @favorites = Kaminari.paginate_array(@favorites).page(params[:page])
+    @favorite_posts = Post.find(@favorites)
+  end 
+  
   private
   def user_params
     params.require(:user).permit(:name, :anime_first, :anime_second, :anime_third, :genre_first, :genre_second, :genre_third)
   end
+  
+ 
 end

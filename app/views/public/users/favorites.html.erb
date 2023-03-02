@@ -1,51 +1,53 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-10 offset-lg-1 mt-2">
-           <%= link_to "投稿詳細へ戻る", post_path(@post), class: "btn btn-primary p-3"  %>
+           <%= link_to "マイページへ戻る", user_path(@user), class: "btn btn-primary p-3"  %>
         </div>
     </div>
     <div class="row">
         <div class="col-md-10 offset-1 mt-3">
             <div class="border border-primary rounded bg-white">
                 <h3 class="bg-primary text-white text-center py-3 mb-0">
-                   コメント一覧
+                   いいねした投稿一覧
                 </h3>
             
-               <!--コメントは基本的に消せないようにしたいのでユーザー側の削除機能は実装していません-->
+               
                 <div class="row">
                     <div class="col-12">
                         <table class="table">
                                 <thead class="table-secondary">
                                        <tr>
                                            <th style="width: 20%">投稿者</th>
-                                           <th style="width: 60%">コメント</th>
+                                           <th style="width: 60%">タイトル</th>
                                            <th style="width: 20%">投稿日時</th>
                                        </tr>
                                 </thead>
                                 <tbody>
-                                     <!--コメントがない場合表示-->
-                                     <% unless @comment.present? %>
+                                     <!--いいねがない場合表示-->
+                                    <% unless @favorite_posts.present? %>
                                         <tr>
                                             <td></td>
                                             <td>
-                                             <h3 class="text-center">コメントはありません。</h3>
+                                             <h3 class="text-center">いいねした投稿はありません。</h3>
                                             </td>
                                             <td></td>
                                         </tr>
                                     <% else %>
-                                    <!--投稿に対してのコメントを表示-->
-                                       <% @comment.each do |comment| %>
+                                    <!--投稿に対してのいいね一覧を表示-->
+                                       <% @favorite_posts.each do |post|%>
                                                 <tr>
                                                     <td>
                                                        <%= link_to user_path(@user), class: "text-dark" do %>    
-                                                            <%= comment.user.name %>
+                                                            <%= post.user.name %>
                                                         <% end %>  
                                                     </td>
                                                     <td>
-                                                       <%= comment.comment %>
+                                                       <%= link_to post_path(post), class: "text-dark" do %>
+                                                            <%= post.title %>
+                                                       <% end %>      
                                                     </td>
                                                     <td>
-                                                       <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+                                                       <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
                                                     </td>
                                                 </tr>
                                         <% end %>
@@ -53,7 +55,7 @@
                                 </tbody>
                         </table>
                          <!--１ページ１５個まで-->
-                        <%= paginate @comment %>
+                        <%= paginate @favorites %>
                     </div>
                 </div>
             </div>    
