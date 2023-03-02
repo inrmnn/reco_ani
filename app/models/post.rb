@@ -9,6 +9,6 @@ class Post < ApplicationRecord
     validates_presence_of :title, :body
     
     def favorited_by?(user)
-       favorites.where(user_id: user_id).exists?
+       favorites.where(user_id: user.id).exists?
     end
 end
