@@ -42,7 +42,7 @@ Rails.application.routes.draw do
         get 'search'
        end
        resources :comments, only: [:create]
-       resources :favorites, only: [:create, :destroy]
+       resource :favorites, only: [:create, :destroy]
      end 
     get 'posts/comment/:id' => 'posts#comment' , as: 'comment'
     

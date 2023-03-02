@@ -39,7 +39,9 @@
                                        <% @comments.each do |comment| %>
                                                 <tr>
                                                     <td>
-                                                       <%= comment.user.name %>
+                                                       <%= link_to admin_user_path(@user), class: "text-dark" do %>    
+                                                            <%= comment.user.name %>
+                                                        <% end %>  
                                                     </td>
                                                     <td>
                                                        <%= comment.comment %>

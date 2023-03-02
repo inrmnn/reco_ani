@@ -19,10 +19,10 @@ class Admin::PostsController < ApplicationController
     redirect_to admin_root_path
   end 
   
-  
-  
   def comments
      @post = Post.find(params[:id])
+     @user = @post.user
      @comments = @post.comments.page(params[:page])
   end
+  
 end
