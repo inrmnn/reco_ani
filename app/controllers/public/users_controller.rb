@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:edit]
+ 
   
   def show
     # ユーザーページを表示
@@ -8,7 +8,12 @@ class Public::UsersController < ApplicationController
   end
   
   def edit
-    @user = current_user
+    if params[:id] == current_user.id
+      @user = User.find(params[:id])
+      render edit
+    else
+      redirect_to user_path(current_user)
+    end 
   end 
   
   def update
@@ -38,5 +43,6 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:name, :anime_first, :anime_second, :anime_third, :genre_first, :genre_second, :genre_third)
   end
   
+ 
  
 end

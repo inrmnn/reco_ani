@@ -43,15 +43,24 @@ class Public::PostsController < ApplicationController
   
   def destroy
     @post = Post.find(params[:id])
-     # 投稿削除
-    @post.destroy
-    # マイページに遷移
-    flash[:notice] = "投稿を削除しました。"
-    redirect_to user_path(current_user)
+    if @post.user == current_user
+         # 投稿削除
+        @post.destroy
+        # マイページに遷移
+        flash[:notice] = "投稿を削除しました。"
+        redirect_to user_path(current_user)
+    else
+        render show
+    end
   end 
   
   def edit
     @post = Post.find(params[:id])
+    if @post.user == current_user
+        render edit 
+    else
+        redirect_to user_path(current_user)
+    end
   end 
   
   def update
