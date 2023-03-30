@@ -7,7 +7,7 @@
     </div>
     <% else %>
     <div>
-      <h5>いいね数：<%= post.favorites.count %></h5>    
+      <h5>いいね数：<%= post.favorites.count %></h5>
       <%= link_to post_favorites_path(post), method: :post, remote: true, class: "favorite_btn text-decoration-none" do %>
        <h1 class="text-secondary p-1">♡</h1>
       <% end %>

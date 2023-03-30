@@ -57,11 +57,13 @@
                                   <%= link_to "コメントを見る", comment_path, class:"btn btn-primary" %>
                                 </div>
                            </div>
-                           <div class="col-4 offset-2 text-right">
-                               <div id="favorite_btn_<%= @post.id %>">
-                                <%= render 'public/favorites/favorite', post: @post %>
-                               </div> 
-                            </div>
+                           <% if @post.user == current_user %>
+                               <div class="col-4 offset-2 text-right">
+                                   <div id="favorite_btn_<%= @post.id %>">
+                                    <%= render 'public/favorites/favorite', post: @post %>
+                                   </div> 
+                                </div>
+                           <% end %>
                         </div>
                        
                         <!--ログインユーザーの場合表示-->
