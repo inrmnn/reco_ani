@@ -2,9 +2,22 @@
   <div class="row">
   　<div class="col-lg-10 offset-lg-1 mt-5">
       <div class="border border-primary rounded bg-white">
-         <h3 class="bg-primary text-white text-center py-3 mb-5">ログイン</h3>   
- 
-  
+          <div class="row mx-auto">
+              <div class="col-12 bg-primary mb-5 ">
+                  
+                  <div class="row">
+                      <div class="col-2 offset-5">
+                         <h3 class="text-white text-center py-3">ログイン</h3>
+                      </div>
+                      <div class="col-2 offset-3 py-3">
+                          
+                        <%= link_to new_admin_session_path, class: "btn btn-secondary btn-block" do %>
+                         <i class="fas fa-users-cog"></i>
+                        <% end %>
+                      </div>
+                  </div>    
+              </div>
+          </div>
    
          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="row mb-3 justify-content-center">
@@ -38,11 +51,12 @@
         <div class="row">
           <div class="ml-5">
                 <h5 class="mb-5">会員登録がお済みでない方</h5>
-          </div>     
+          </div>
         </div>        
         <div class="sign_in mb-5">
       　  <%= link_to "こちら",new_user_registration_path %>から登録を行なってください
         </div>
+        
   　　</div>
     </div>
   </div>     
